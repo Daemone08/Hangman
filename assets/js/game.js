@@ -16,15 +16,17 @@ console.log(word);
 // variable wordDisplay to show blanks
 var wordDisplay = ""
 
-
-for (i = 0; i < word.length; i++) {
-    if (alphabet.includes(word[i])) {
-        wordDisplay += "_ ";
-        console.log(wordDisplay);
-    }
-    else {
-        wordDisplay += "&nbsp";
-        console.log(wordDisplay);
+// create blanksConversion function
+function blanksConversion(){
+    for (i = 0; i < word.length; i++) {
+        if (alphabet.includes(word[i])) {
+            wordDisplay += "_ ";
+            console.log(wordDisplay);
+        }
+        else {
+            wordDisplay += "&nbsp";
+            console.log(wordDisplay);
+        }
     }
 }
 
@@ -40,9 +42,8 @@ var guessCount = 6;
 // variable for winCount
 var winCount = "winCount";
 
-// push initial display html
-$(document).ready(function() {
-
+// create a global function to push html text
+function displayText() {
     $(".game-html").html(
         "PRESS A LETTER KEY TO TAKE YOUR SHOT <br><br>" + 
         "GOALIE: <br>" +
@@ -52,8 +53,25 @@ $(document).ready(function() {
         guessLetters + "<br><br>" +
         "GOALS: " + winCount + "<br>" 
     );
+}
 
+// call the inital blanksConversion and displayText when document is ready
+$(document).ready(function() {
+    blanksConversion();
+    displayText();
 });
+
+// create a resetGame function
+function resetGame() {
+    word = wordBank[Math.floor(Math.random() * wordBank.length)];
+    wordDisplay = ""
+    blanksConversion();
+    guess = "";
+    guessLetters = "";
+    guessCount = 6;
+    // update display
+    displayText();
+}
 
 // <--------- OBJECT + METHODS --------->
 
@@ -82,17 +100,24 @@ var hangman = {
 
         // if letter is not word display in word
         else {
-            // display in guessLetters and check for loss
-            guessLetters //is updated
+            // display in guessLetters, decrement guessCount, and check for loss:
+            // decrement guessCount
+            guessCount--;
+            // update guessLetters
+            guessLetters = guessLetters + guess + " ";
             //check for loss
             if (guessCount === 0) {
                 // activate loss activity
-                // reset word
+                // reset game
+                resetGame();
             }
+            // update display
+            else {
+                displayText();
+            }
+            
         }
     }
-
-
 }
 
 // <--------- LISTENERS --------->
