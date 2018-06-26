@@ -7,7 +7,7 @@
 var alphabet = ["a", "A", "b", "B", "c", "C", "d", "D", "e", "E", "f", "F", "g", "G", "h", "H", "i", "I", "j", "J", "k", "K", "l", "L", "m", "M", "n", "N", "o", "O", "p", "P", "q", "Q", "r", "R", "s", "S", "t", "T", "u", "U", "v", "V", "w", "W", "x", "X", "y", "Y", "z", "Z"];
 
 // array for wordBank
-var wordBank = ["RUSSIA", "URUGUAY", "EGYPT", "SAUDI ARABIA"];
+var wordBank = ["RUSSIA", "URUGUAY", "EGYPT", "SAUDI ARABIA", "SPAIN", "PORTUGAL", "IRAN", "MOROCCO", "FRANCE", "DENMARK", "PERU", "AUSTRALIA", "CROATIA", "NIGERIA", "ICELAND", "ARGENTINA", "BRAZIL", "SWITZERLAND", "SERBIA", "COSTA RICA", "MEXICO", "GERMANY", "SWEDEN", "SOUTH KOREA", "ENGLAND", "BELGIUM", "TUNISIA", "PANAMA", "JAPAN", "SENEGAL", "COLOMBIA", "POLAND"];
 
 // variable word which is randomly selected from wordBank
 var word = wordBank[Math.floor(Math.random() * wordBank.length)];
@@ -17,7 +17,7 @@ console.log(word);
 var wordDisplay = []
 
 // create blanksConversion function
-function blanksConversion(){
+function blanksConversion() {
     for (i = 0; i < word.length; i++) {
         if (alphabet.includes(word[i])) {
             wordDisplay.push("_ ");
@@ -37,7 +37,7 @@ var guess = "";
 var guessLetters = "";
 
 // variable guessCount to show incorrect guesses remaining
-var guessCount = 6;
+var guessCount = 5;
 
 // variable for winCount
 var winCount = 0;
@@ -48,7 +48,7 @@ var previousWord = "";
 // create a global function to push html text
 function displayText() {
     $(".game-html").html(
-        "PRESS A LETTER KEY TO TAKE YOUR SHOT <br><br>" + 
+        "PRESS A LETTER KEY TO TAKE YOUR SHOT <br><br>" +
         "WORLD CUP NATION: <br>" +
         wordDisplay.join("") + "<br><br>" +
         "MISSES REMAINING: " + guessCount + "<br><br>" +
@@ -60,7 +60,7 @@ function displayText() {
 }
 
 // call the inital blanksConversion and displayText when document is ready
-$(document).ready(function() {
+$(document).ready(function () {
     blanksConversion();
     displayText();
 });
@@ -69,11 +69,21 @@ $(document).ready(function() {
 function resetGame() {
     previousWord = word;
     word = wordBank[Math.floor(Math.random() * wordBank.length)];
+    // don't allow duplicate words
+    if (word == previousWord) {
+        k = wordBank.indexOf(word);
+        if (k == 0) {
+            word = wordBank[(k + 1)];
+        }
+        else {
+            word = wordBank[(k - 1)];
+        }
+    }
     wordDisplay = []
     blanksConversion();
     guess = "";
     guessLetters = "";
-    guessCount = 6;
+    guessCount = 5;
     // update display
     displayText();
 }
@@ -85,7 +95,7 @@ var hangman = {
     // create methods for game functions
     checkLetter: function () {
         // add logic to determine course of action
-        
+
         // if letter is in word display in word
         if (word.includes(guess)) {
             console.log("correct trigger works");
@@ -97,14 +107,14 @@ var hangman = {
                     console.log("super");
                     console.log(wordDisplay);
                 }
-            displayText();
-            }    
+                displayText();
+            }
             // for every letter in the word
-                // if the letter is equal to the guess 
-                    // assign the guess to the corresponding blank
+            // if the letter is equal to the guess 
+            // assign the guess to the corresponding blank
 
-                // otherwise skip
-            
+            // otherwise skip
+
             // check for win
             if (wordDisplay.join("") == word) {
                 // increase winCount
@@ -132,7 +142,7 @@ var hangman = {
             else {
                 displayText();
             }
-            
+
         }
     }
 }

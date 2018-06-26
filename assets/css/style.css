@@ -1,7 +1,22 @@
+@font-face {
+    font-family: "FIFA";
+    src: url("FONT/Dusha_-_FIFA_World_Cup_2018.ttf");
+}
+
+.container {
+    font-family: "FIFA";
+}
+
 body {
     background-image: url(https://i.ytimg.com/vi/Z6szMwKsoX4/maxresdefault.jpg);
 }
 
 .game-html {
     white-space: pre-wrap;
+    text-align: center;
+    background-color: rgba(0, 116, 177, 0.3);
+}
+
+p {
+    opacity: 1.0;
 }
