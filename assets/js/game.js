@@ -50,7 +50,7 @@ function displayText() {
     $(".game-html").html(
         "PRESS A LETTER KEY TO TAKE YOUR SHOT <br><br>" +
         "WORLD CUP NATION: <br><br>" +
-        wordDisplay.join("") + "<br><br>" +
+        "<span id='blanks'>" + wordDisplay.join("") + "</span><br><br>" +
         "MISSES REMAINING: " + guessCount + "<br><br>" +
         "SHOTS OFF TARGET: <br>" +
         guessLetters + "<br><br>" +
@@ -120,7 +120,7 @@ var hangman = {
                 // increase winCount
                 winCount++;
                 // activate win activity
-                $(".img-html").html("<img id='winloss-img' class='img-thumbnail mt-4' src='https://s-i.huffpost.com/gen/1865236/images/o-COLOMBIA-facebook.jpg' alt='gooooooal'><br><br><h1>GOOOOOOAAAALLL!!!!</h1>");
+                $(".img-html").html("<img id='winloss-img' class='img-thumbnail mt-4' src='https://s-i.huffpost.com/gen/1865236/images/o-COLOMBIA-facebook.jpg' alt='gooooooal'><br><br><h1>GOOOAAAALLL!!!!</h1>");
                 // reset word
                 resetGame();
             }
