@@ -16,13 +16,14 @@ console.log(word);
 // variable wordDisplay to show blanks
 var wordDisplay = ""
 
+
 for (i = 0; i < word.length; i++) {
     if (alphabet.includes(word[i])) {
         wordDisplay += "_ ";
         console.log(wordDisplay);
     }
     else {
-        wordDisplay += " ";
+        wordDisplay += "&nbsp";
         console.log(wordDisplay);
     }
 }
@@ -31,13 +32,28 @@ for (i = 0; i < word.length; i++) {
 var guess = "";
 
 // variable guessLetters to collect incorrect user guesses for display
-var guessLetters = "";
+var guessLetters = "guessletters";
 
 // variable guessCount to show incorrect guesses remaining
 var guessCount = 6;
 
 // variable for winCount
-var winCount = "";
+var winCount = "winCount";
+
+// push initial display html
+$(document).ready(function() {
+
+    $(".game-html").html(
+        "PRESS A LETTER KEY TO TAKE YOUR SHOT <br><br>" + 
+        "GOALIE: <br>" +
+        wordDisplay + "<br><br>" +
+        "MISSES REMAINING: " + guessCount + "<br><br>" +
+        "SHOTS OFF TARGET: <br>" +
+        guessLetters + "<br><br>" +
+        "GOALS: " + winCount + "<br>" 
+    );
+
+});
 
 // <--------- OBJECT + METHODS --------->
 
@@ -46,7 +62,7 @@ var hangman = {
     // create methods for game functions
     checkLetter: function () {
         // add logic to determine course of action
-
+        
         // if letter is in word display in word
         if (word.includes(guess)) {
             // display in correct position
