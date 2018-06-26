@@ -3,24 +3,30 @@
     src: url("FONT/Dusha_-_FIFA_World_Cup_2018.ttf");
 }
 
+#site-header {
+    color: #D30208;
+}
+
 .container {
     font-family: "FIFA";
 }
 
 body {
-    /* background-image: url(http://benficapodcast.com/wp-content/uploads/2014/06/soccer-field-wallpaper-3.jpg); */
-    background-color: #E5C685;
+    background-image: url(https://www.roadtovr.com/wp-content/uploads/2018/05/fifa-world-cup.jpg);
+    /* background-color: #E5C685; */
 }
 
 .game-html {
     white-space: pre-wrap;
     text-align: center;
-    background-color: rgba(0, 116, 177, 0.3);
+    background-color: rgba(229, 198, 133, 0.5);
+    color: #171714;
     font-size: 24px;
 }
 
 .img-html {
-    background-color: rgba(0, 116, 177, 0.3);
+    background-color: rgba(229, 198, 133, 0.5);
+    color: #171714;
 }
 
 #blanks {
