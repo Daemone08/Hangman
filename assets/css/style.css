@@ -8,15 +8,18 @@
 }
 
 body {
-    background-image: url(https://i.ytimg.com/vi/Z6szMwKsoX4/maxresdefault.jpg);
+    /* background-image: url(https://i.ytimg.com/vi/Z6szMwKsoX4/maxresdefault.jpg); */
+    background-color: #E5C685;
 }
 
 .game-html {
     white-space: pre-wrap;
     text-align: center;
     background-color: rgba(0, 116, 177, 0.3);
+    font-size: 24px;
 }
 
-p {
-    opacity: 1.0;
+.img-html {
+    background-color: rgba(0, 116, 177, 0.3);
 }
+

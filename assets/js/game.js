@@ -49,7 +49,7 @@ var previousWord = "";
 function displayText() {
     $(".game-html").html(
         "PRESS A LETTER KEY TO TAKE YOUR SHOT <br><br>" +
-        "WORLD CUP NATION: <br>" +
+        "WORLD CUP NATION: <br><br>" +
         wordDisplay.join("") + "<br><br>" +
         "MISSES REMAINING: " + guessCount + "<br><br>" +
         "SHOTS OFF TARGET: <br>" +
@@ -120,6 +120,7 @@ var hangman = {
                 // increase winCount
                 winCount++;
                 // activate win activity
+                $(".img-html").html("<img id='winloss-img' class='img-thumbnail mt-4' src='https://s-i.huffpost.com/gen/1865236/images/o-COLOMBIA-facebook.jpg' alt='gooooooal'><br><br><h1>GOOOOOOAAAALLL!!!!</h1>");
                 // reset word
                 resetGame();
             }
@@ -135,6 +136,7 @@ var hangman = {
             //check for loss
             if (guessCount === 0) {
                 // activate loss activity
+                $(".img-html").html("<img id='winloss-img' class='img-thumbnail mt-4' src='https://i.ytimg.com/vi/IBBu7SZJxJ0/maxresdefault.jpg' alt='missed_shot'><br><br><h1>MISS!</h1>");
                 // reset game
                 resetGame();
             }
