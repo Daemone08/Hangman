@@ -14,17 +14,17 @@ var word = wordBank[Math.floor(Math.random() * wordBank.length)];
 console.log(word);
 
 // variable wordDisplay to show blanks
-var wordDisplay = ""
+var wordDisplay = []
 
 // create blanksConversion function
 function blanksConversion(){
     for (i = 0; i < word.length; i++) {
         if (alphabet.includes(word[i])) {
-            wordDisplay += "_ ";
+            wordDisplay.push("_ ");
             console.log(wordDisplay);
         }
         else {
-            wordDisplay += "&nbsp";
+            wordDisplay.push(" ");
             console.log(wordDisplay);
         }
     }
@@ -34,24 +34,28 @@ function blanksConversion(){
 var guess = "";
 
 // variable guessLetters to collect incorrect user guesses for display
-var guessLetters = "guessletters";
+var guessLetters = "";
 
 // variable guessCount to show incorrect guesses remaining
 var guessCount = 6;
 
 // variable for winCount
-var winCount = "winCount";
+var winCount = 0;
+
+// variable for previousWord
+var previousWord = "";
 
 // create a global function to push html text
 function displayText() {
     $(".game-html").html(
         "PRESS A LETTER KEY TO TAKE YOUR SHOT <br><br>" + 
-        "GOALIE: <br>" +
-        wordDisplay + "<br><br>" +
+        "WORLD CUP NATION: <br>" +
+        wordDisplay.join("") + "<br><br>" +
         "MISSES REMAINING: " + guessCount + "<br><br>" +
         "SHOTS OFF TARGET: <br>" +
         guessLetters + "<br><br>" +
-        "GOALS: " + winCount + "<br>" 
+        "GOALS SCORED: " + winCount + "<br><br>" +
+        "PREVIOUS NATION: " + previousWord
     );
 }
 
@@ -63,8 +67,9 @@ $(document).ready(function() {
 
 // create a resetGame function
 function resetGame() {
+    previousWord = word;
     word = wordBank[Math.floor(Math.random() * wordBank.length)];
-    wordDisplay = ""
+    wordDisplay = []
     blanksConversion();
     guess = "";
     guessLetters = "";
@@ -83,21 +88,33 @@ var hangman = {
         
         // if letter is in word display in word
         if (word.includes(guess)) {
+            console.log("correct trigger works");
             // display in correct position
-            wordDisplay; //is updated
-            // check for win
+            for (j = 0; j < word.length; j++) {
+                console.log(word.charAt(j));
+                if (word.charAt(j) == guess) {
+                    wordDisplay[j] = guess;
+                    console.log("super");
+                    console.log(wordDisplay);
+                }
+            displayText();
+            }    
+            // for every letter in the word
+                // if the letter is equal to the guess 
+                    // assign the guess to the corresponding blank
 
-            if (wordDisplay === word) {
+                // otherwise skip
+            
+            // check for win
+            if (wordDisplay.join("") == word) {
                 // increase winCount
                 winCount++;
                 // activate win activity
                 // reset word
+                resetGame();
             }
-            else {
-                return false;
-            }
+            console.log(wordDisplay);
         }
-
         // if letter is not word display in word
         else {
             // display in guessLetters, decrement guessCount, and check for loss:
